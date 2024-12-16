@@ -3,7 +3,7 @@ version: '3.1'
 services:
     db:
         image: mysql:8.0.39
-        container_name: mysql
+        container_name: mysql_absolute_cinema
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: root
@@ -21,7 +21,7 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
-        container_name: php
+        container_name: php_absolute_cinema
         restart: always
         volumes:
             - .:/var/www/html
