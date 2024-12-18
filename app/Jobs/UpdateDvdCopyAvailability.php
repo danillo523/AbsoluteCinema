@@ -13,6 +13,7 @@ class UpdateDvdCopyAvailability implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $dvdCopyId;
+
     protected $available;
 
     /**

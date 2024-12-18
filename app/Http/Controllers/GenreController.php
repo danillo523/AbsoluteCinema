@@ -15,6 +15,7 @@ class GenreController extends BaseController
     public function index(): JsonResponse
     {
         $genres = Genre::all();
+
         return $this->sendResponse($genres, 'Genres retrieved successfully.');
     }
 
@@ -32,6 +33,7 @@ class GenreController extends BaseController
         }
 
         $genre = Genre::create($request->all());
+
         return $this->sendResponse($genre, 'Genre created successfully.', 201);
     }
 
@@ -41,6 +43,7 @@ class GenreController extends BaseController
     public function show(string $id): JsonResponse
     {
         $genre = Genre::findOrFail($id);
+
         return $this->sendResponse($genre, 'Genre retrieved successfully.');
     }
 
@@ -59,6 +62,7 @@ class GenreController extends BaseController
 
         $genre = Genre::findOrFail($id);
         $genre->update($request->all());
+
         return $this->sendResponse($genre, 'Genre updated successfully.');
     }
 
@@ -68,6 +72,7 @@ class GenreController extends BaseController
     public function destroy(string $id): JsonResponse
     {
         Genre::destroy($id);
+
         return $this->sendResponse([], 'Genre deleted successfully.');
     }
 }

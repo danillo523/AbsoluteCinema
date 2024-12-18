@@ -14,6 +14,7 @@ class DvdCopyController extends BaseController
     public function index(): JsonResponse
     {
         $dvdCopies = DvdCopy::with('dvd')->get();
+
         return $this->sendResponse($dvdCopies, 'DVD copies retrieved successfully.');
     }
 
@@ -28,12 +29,14 @@ class DvdCopyController extends BaseController
         }
 
         $dvdCopy = DvdCopy::create($request->all());
+
         return $this->sendResponse($dvdCopy, 'DVD copy created successfully.', 201);
     }
 
     public function show(string $id): JsonResponse
     {
         $dvdCopy = DvdCopy::with('dvd')->findOrFail($id);
+
         return $this->sendResponse($dvdCopy, 'DVD copy retrieved successfully.');
     }
 
@@ -41,6 +44,7 @@ class DvdCopyController extends BaseController
     {
         $dvdCopy = DvdCopy::findOrFail($id);
         $dvdCopy->delete();
+
         return $this->sendResponse([], 'DVD copy deleted successfully.');
     }
 }

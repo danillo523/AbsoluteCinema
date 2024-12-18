@@ -17,6 +17,7 @@ class CustomerController extends BaseController
     public function index(): JsonResponse
     {
         $customers = Customer::all();
+
         return $this->sendResponse($customers, 'Customers successfully retrieved');
     }
 
@@ -28,7 +29,7 @@ class CustomerController extends BaseController
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:customers',
-            'phone' => 'required|numeric|digits_between:10,11|unique:customers'
+            'phone' => 'required|numeric|digits_between:10,11|unique:customers',
         ]);
 
         if ($validator->fails()) {
@@ -36,6 +37,7 @@ class CustomerController extends BaseController
         }
 
         $customer = Customer::create($request->all());
+
         return $this->sendResponse($customer, 'Customer successfully registered.', 201);
     }
 
@@ -54,8 +56,8 @@ class CustomerController extends BaseController
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:customers,email,' . $customer->id,
-            'phone' => 'required|numeric|digits_between:10,11|unique:customers,phone,' . $customer->id
+            'email' => 'required|email|unique:customers,email,'.$customer->id,
+            'phone' => 'required|numeric|digits_between:10,11|unique:customers,phone,'.$customer->id,
         ]);
 
         if ($validator->fails()) {
@@ -63,6 +65,7 @@ class CustomerController extends BaseController
         }
 
         $customer->update($request->all());
+
         return $this->sendResponse($customer, 'Customer updated successfully');
     }
 
@@ -72,6 +75,7 @@ class CustomerController extends BaseController
     public function destroy(Customer $customer): JsonResponse
     {
         $customer->delete();
+
         return $this->sendResponse(null, 'Customer deleted successfully', 204);
     }
 }

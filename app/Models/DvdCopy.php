@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DvdCopy extends Model
 {
-    Use HasFactory, HasUuids;
+    use HasFactory, HasUuids;
 
     protected $fillable = [
         'dvd_id',

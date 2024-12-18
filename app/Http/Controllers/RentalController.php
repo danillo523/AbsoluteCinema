@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Jobs\UpdateDvdCopyAvailability;
-use App\Models\Rental;
 use App\Models\DvdCopy;
+use App\Models\Rental;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Carbon\Carbon;
 
 class RentalController extends BaseController
 {
@@ -26,7 +26,7 @@ class RentalController extends BaseController
         }
 
         $dvdCopy = DvdCopy::findOrFail($request->dvd_copy_id);
-        if (!$dvdCopy->available) {
+        if (! $dvdCopy->available) {
             return $this->sendError('DVD copy is not available for rent.', [], 422);
         }
 

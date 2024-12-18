@@ -19,7 +19,6 @@ return new class extends Migration
             $table->integer('available_copies')->default(0);
             $table->timestamps();
 
-
         });
     }
 

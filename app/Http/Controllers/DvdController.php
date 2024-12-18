@@ -17,6 +17,7 @@ class DvdController extends BaseController
     public function index(): JsonResponse
     {
         $dvds = Dvd::with('genre')->get();
+
         return $this->sendResponse($dvds, 'DVDs retrieved successfully.');
     }
 
@@ -36,6 +37,7 @@ class DvdController extends BaseController
         }
 
         $dvd = Dvd::create($request->all());
+
         return $this->sendResponse($dvd, 'DVD created successfully.', 201);
     }
 
@@ -45,6 +47,7 @@ class DvdController extends BaseController
     public function show(string $id): JsonResponse
     {
         $dvd = Dvd::with('genre')->findOrFail($id);
+
         return $this->sendResponse($dvd, 'DVD retrieved successfully.');
     }
 
@@ -65,6 +68,7 @@ class DvdController extends BaseController
 
         $dvd = Dvd::findOrFail($id);
         $dvd->update($request->all());
+
         return $this->sendResponse($dvd, 'DVD updated successfully.');
     }
 
@@ -74,6 +78,7 @@ class DvdController extends BaseController
     public function destroy(string $id): JsonResponse
     {
         Dvd::destroy($id);
+
         return $this->sendResponse([], 'DVD deleted successfully.');
     }
 }
