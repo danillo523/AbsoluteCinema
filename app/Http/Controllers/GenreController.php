@@ -28,7 +28,7 @@ class GenreController extends BaseController
         ]);
 
         if ($validator->fails()) {
-            return $this->sendError('Validation Error.', $validator->errors(), 422);
+            return $this->sendError('Request with errors, please fix these errors below.', $validator->errors(), 422);
         }
 
         $genre = Genre::create($request->all());
@@ -54,7 +54,7 @@ class GenreController extends BaseController
         ]);
 
         if ($validator->fails()) {
-            return $this->sendError('Validation Error.', $validator->errors(), 422);
+            return $this->sendError('Request with errors, please fix these errors below.', $validator->errors(), 422);
         }
 
         $genre = Genre::findOrFail($id);

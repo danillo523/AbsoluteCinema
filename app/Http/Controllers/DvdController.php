@@ -9,7 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class DVDController extends BaseController
+class DvdController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -32,7 +32,7 @@ class DVDController extends BaseController
         ]);
 
         if ($validator->fails()) {
-            return $this->sendError('Validation Error.', $validator->errors(), 422);
+            return $this->sendError('Request with errors, please fix these errors below.', $validator->errors(), 422);
         }
 
         $dvd = Dvd::create($request->all());
@@ -60,7 +60,7 @@ class DVDController extends BaseController
         ]);
 
         if ($validator->fails()) {
-            return $this->sendError('Validation Error.', $validator->errors(), 422);
+            return $this->sendError('Request with errors, please fix these errors below.', $validator->errors(), 422);
         }
 
         $dvd = Dvd::findOrFail($id);

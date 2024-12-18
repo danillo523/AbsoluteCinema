@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\DVDController;
+use App\Http\Controllers\DvdController;
+use App\Http\Controllers\DvdCopyController;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\RentalController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,9 +30,18 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('genres/{genre}', [GenreController::class, 'destroy'])
         ->middleware('check.role:admin');
 
-    Route::apiResource('dvds', DVDController::class)
+    Route::apiResource('dvds', DvdController::class)
         ->except(['destroy']);
 
-    Route::delete('dvds/{dvd}', [DVDController::class, 'destroy'])
+    Route::delete('dvds/{dvd}', [DvdController::class, 'destroy'])
         ->middleware('check.role:admin');
+
+    Route::apiResource('dvd-copies', DvdCopyController::class)
+        ->except(['destroy']);
+
+    Route::delete('dvd-copies/{dvd_copy}', [DvdCopyController::class, 'destroy'])
+        ->middleware('check.role:admin');
+
+    Route::post('rentals/rent', [RentalController::class, 'rent']);
+    Route::post('rentals/return/{id}', [RentalController::class, 'return']);
 });

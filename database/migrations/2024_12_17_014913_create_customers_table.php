@@ -17,6 +17,10 @@ return new class extends Migration {
             $table->string('phone', 11)->unique();
             $table->timestamps();
         });
+
+        Schema::table('customers', function (Blueprint $table) {
+            $table->index('id');
+        });
     }
 
     /**

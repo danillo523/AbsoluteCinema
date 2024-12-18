@@ -25,5 +25,10 @@ class Dvd extends Model
     public function dvdCopies()
     {
         return $this->hasMany(DvdCopy::class);
-    } 
+    }
+
+    public function getAvailableCopiesAttribute()
+    {
+        return $this->dvdCopies()->where('available', true)->count();
+    }
 }
