@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Jobs\UpdateDvdCopyAvailability;
 use App\Models\Rental;
 use App\Models\DvdCopy;
 use Illuminate\Http\JsonResponse;
@@ -29,7 +30,7 @@ class RentalController extends BaseController
             return $this->sendError('DVD copy is not available for rent.', [], 422);
         }
 
-        $dvdCopy->update(['available' => false]);
+        UpdateDvdCopyAvailability::dispatch($dvdCopy->id, false);
 
         $rental = Rental::create([
             'customer_id' => $request->customer_id,
@@ -53,8 +54,7 @@ class RentalController extends BaseController
             'returned_at' => Carbon::now(),
         ]);
 
-        $dvdCopy = $rental->dvdCopy;
-        $dvdCopy->update(['available' => true]);
+        UpdateDvdCopyAvailability::dispatch($rental->dvd_copy_id, true);
 
         return $this->sendResponse($rental, 'DVD returned successfully.');
     }

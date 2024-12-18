@@ -21,4 +21,8 @@ RUN composer install
 
 # RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
+COPY .docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
 EXPOSE 8000
+
+CMD ["/usr/bin/supervisord"]
