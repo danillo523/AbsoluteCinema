@@ -108,4 +108,10 @@ A documentação da API está disponível seguinte link:
 
 ### Aluguéis
 - `POST /rentals/rent` - Alugar um DVD 
-- `POST /rentals/return/{id}` - Devolver um DVD alugado 
+- `POST /rentals/return/{id}` - Devolver um DVD alugado
+
+  
+## Banco de dados
+
+![data-base-absolute-cinema](https://github.com/user-attachments/assets/c512a96e-b601-467d-9b63-a1930f013cd7)
+
